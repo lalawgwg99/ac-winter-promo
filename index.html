@@ -6,41 +6,40 @@
 <title>2026冷氣冬販 結帳速查</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#f5f6f8;color:#222;line-height:1.6;padding-bottom:70px}
-header{position:sticky;top:0;background:#1a3a5c;color:#fff;padding:12px 14px;z-index:20}
-header h1{font-size:20px;font-weight:700}
+body{font-family:-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#f1f5f9;color:#0f172a;line-height:1.7;padding-bottom:70px}
+header{position:sticky;top:0;background:#ffffff;border-bottom:1px solid #e2e8f0;padding:12px 14px;z-index:20}
+header h1{font-size:20px;font-weight:800;color:#0f172a}
 .searchbar{margin-top:8px;display:flex;gap:8px}
-.searchbar input{flex:1;font-size:16px;padding:10px 12px;border:none;border-radius:8px;outline:none}
-.searchbar button{font-size:14px;padding:0 14px;border:none;border-radius:8px;background:#f9a825;color:#222;font-weight:700}
-.warn{background:#fff8e1;border-left:5px solid #f9a825;padding:12px 14px;margin:12px 12px 0;font-size:16px;border-radius:6px}
+.searchbar input{flex:1;font-size:16px;padding:11px 12px;border:1.5px solid #cbd5e1;border-radius:10px;outline:none;background:#fff;color:#0f172a}
+.searchbar input::placeholder{color:#94a3b8}
+.searchbar button{font-size:15px;padding:0 16px;border:none;border-radius:10px;background:#0f172a;color:#fff;font-weight:700}
+.warn{background:#fffbeb;border:1px solid #fcd34d;padding:12px 14px;margin:12px 12px 0;font-size:16px;border-radius:10px;color:#78350f}
+.warn b{color:#92400e}
 .brandnav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px 2px}
-.brandnav button{flex:1 1 30%;font-size:17px;font-weight:700;padding:14px 4px;border:1px solid #ddd;border-radius:8px;background:#fff;color:#1a3a5c;cursor:pointer}
-.brandnav button.active{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
-section.brand{background:#fff;margin:12px;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.sec-head{padding:14px;font-weight:700;font-size:20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
-.sec-head.arrow{font-size:13px;opacity:.9}
-.sec-body{padding:14px;font-size:17px}
-section.brand.closed.sec-body{display:none}
-.meta{font-size:16px;color:#333;margin-bottom:10px}
-.meta b{color:#222}
-.gift{border:1px solid #e0e0e0;border-radius:8px;padding:10px;margin:8px 0;background:#fafafa}
-.gift.gname{font-weight:700;font-size:18px}
-.coderow{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
-.gcode{font-family:monospace;font-size:19px;font-weight:700;background:#e3ecf7;border:2px solid #90a4c0;border-radius:8px;padding:10px 12px;user-select:all;flex:1;min-width:0;word-break:break-all}
-.copybtn{font-size:16px;font-weight:700;padding:10px 16px;border:none;border-radius:6px;background:#1a3a5c;color:#fff;cursor:pointer;white-space:nowrap}
-.copybtn.ok{background:#2e7d32}
-.nsp{font-size:14px;color:#888;margin-top:4px}
-.tag{display:inline-block;font-size:13px;background:#e3f2fd;color:#1565c0;border-radius:10px;padding:2px 8px;margin-left:6px;vertical-align:middle}
-.op{font-size:16px;background:#f1f8e9;border-radius:6px;padding:8px 10px;margin-top:8px}
+.brandnav button{flex:1 1 30%;font-size:17px;font-weight:700;padding:14px 4px;border:1.5px solid #cbd5e1;border-radius:10px;background:#fff;color:#0f172a;cursor:pointer}
+.brandnav button.active{background:#0f172a;color:#fff;border-color:#0f172a}
+section.brand{background:#fff;margin:12px;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;scroll-margin-top:150px}
+.sec-head{padding:14px 16px;font-weight:800;font-size:20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;color:#0f172a;background:#f8fafc;border-bottom:1px solid #e2e8f0}
+.sec-head .arrow{font-size:13px;color:#94a3b8}
+.sec-body{padding:14px 16px;font-size:17px}
+section.brand.closed .sec-body{display:none}
+.meta{font-size:16px;color:#334155;margin-bottom:10px}
+.meta b{color:#0f172a}
+.gift{border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin:10px 0;background:#fff}
+.gift .gname{font-weight:700;font-size:18px;color:#0f172a}
+.coderow{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.gcode{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:19px;font-weight:700;background:#f1f5f9;border:1.5px solid #94a3b8;border-radius:8px;padding:10px 12px;user-select:all;flex:1;min-width:0;word-break:break-all;color:#0f172a;letter-spacing:.5px}
+.copybtn{font-size:16px;font-weight:700;padding:11px 18px;border:none;border-radius:8px;background:#0f172a;color:#fff;cursor:pointer;white-space:nowrap}
+.copybtn.ok{background:#047857}
+.nsp{font-size:14px;color:#64748b;margin-top:6px}
+.tag{display:inline-block;font-size:13px;font-weight:600;background:#e2e8f0;color:#334155;border-radius:20px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.op{font-size:16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;margin-top:10px;color:#334155}
 table{width:100%;border-collapse:collapse;font-size:16px;margin-top:8px}
-th,td{border:1px solid #ddd;padding:9px 8px;text-align:left}
-th{background:#f0f0f0}
-.nomatch{text-align:center;color:#888;padding:30px 16px;font-size:14px;display:none}
-footer{padding:16px;font-size:14px;color:#777}
-.pana{background:#e65100}.mhi{background:#0d47a1}.lgc{background:#a50034}.shp{background:#1565c0}.hrn{background:#6a1b9a}.chm{background:#00838f}.smp{background:#c62828}
-mark{background:#ffeb3b;padding:0 2px;border-radius:2px}
-
-section.brand{scroll-margin-top:150px}
+th,td{border:1px solid #e2e8f0;padding:9px 8px;text-align:left;color:#0f172a}
+th{background:#f8fafc;font-weight:700}
+.nomatch{text-align:center;color:#64748b;padding:30px 16px;font-size:15px;display:none}
+footer{padding:16px;font-size:14px;color:#64748b}
+mark{background:#fde047;padding:0 2px;border-radius:2px;color:#0f172a}
 @media(min-width:820px){
 header h1,.searchbar{max-width:740px;margin-left:auto;margin-right:auto}
 .warn{margin:12px auto 0;max-width:760px}
