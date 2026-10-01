@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026冷氣冬販 結帳速查</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#f5f6f8;color:#222;line-height:1.6;padding-bottom:70px}
+header{position:sticky;top:0;background:#1a3a5c;color:#fff;padding:12px 14px;z-index:20}
+header h1{font-size:17px;font-weight:700}
+.searchbar{margin-top:8px;display:flex;gap:8px}
+.searchbar input{flex:1;font-size:15px;padding:10px 12px;border:none;border-radius:8px;outline:none}
+.searchbar button{font-size:14px;padding:0 14px;border:none;border-radius:8px;background:#f9a825;color:#222;font-weight:700}
+.warn{background:#fff8e1;border-left:4px solid #f9a825;padding:10px 14px;margin:12px 12px 0;font-size:13px;border-radius:6px}
+.brandnav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px 2px}
+.brandnav button{flex:1 1 30%;font-size:14px;font-weight:700;padding:11px 4px;border:1px solid #ddd;border-radius:8px;background:#fff;color:#1a3a5c;cursor:pointer}
+.brandnav button.active{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
+section.brand{background:#fff;margin:12px;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sec-head{padding:12px 14px;color:#fff;font-weight:700;font-size:16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+.sec-head.arrow{font-size:13px;opacity:.9}
+.sec-body{padding:12px 14px;font-size:14px}
+section.brand.closed.sec-body{display:none}
+.meta{font-size:13px;color:#555;margin-bottom:8px}
+.meta b{color:#222}
+.gift{border:1px solid #e0e0e0;border-radius:8px;padding:10px;margin:8px 0;background:#fafafa}
+.gift.gname{font-weight:700;font-size:14px}
+.coderow{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+.gcode{font-family:monospace;font-size:14px;font-weight:700;background:#eef2f7;border-radius:6px;padding:8px 10px;user-select:all;flex:1;min-width:0;word-break:break-all}
+.copybtn{font-size:13px;font-weight:700;padding:8px 12px;border:none;border-radius:6px;background:#1a3a5c;color:#fff;cursor:pointer;white-space:nowrap}
+.copybtn.ok{background:#2e7d32}
+.nsp{font-size:12px;color:#888;margin-top:4px}
+.tag{display:inline-block;font-size:11px;background:#e3f2fd;color:#1565c0;border-radius:10px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.op{font-size:13px;background:#f1f8e9;border-radius:6px;padding:8px 10px;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{border:1px solid #ddd;padding:6px;text-align:left}
+th{background:#f0f0f0}
+.nomatch{text-align:center;color:#888;padding:30px 16px;font-size:14px;display:none}
+footer{padding:16px;font-size:12px;color:#777}
+.pana{background:#e65100}.mhi{background:#0d47a1}.lgc{background:#a50034}.shp{background:#1565c0}.hrn{background:#6a1b9a}.chm{background:#00838f}.smp{background:#c62828}
+mark{background:#ffeb3b;padding:0 2px;border-radius:2px}
+</style>
+</head>
+<body>
+<header>
+<h1>❄️ 2026 冷氣冬販・結帳速查</h1>
+<div class="searchbar">
+<input id="q" type="search" placeholder="搜尋品牌、贈品、編號…例：630018" autocomplete="off">
+<button id="clearBtn" type="button">清除</button>
+</div>
+</header>
+
+<div class="warn">⚠️ <b>期間注意</b>：奇美只到 <b>11/30</b>、三菱重工到 <b>12/31</b>，其餘到 <b>2027/01/31</b>。國際牌現金回饋線上申請截止 <b>2027/02/26</b>。</div>
+
+<div class="brandnav" id="brandnav">
+<button type="button" data-t="b-pana">國際</button>
+<button type="button" data-t="b-mhi">三菱重工</button>
+<button type="button" data-t="b-lg">LG</button>
+<button type="button" data-t="b-sharp">夏普</button>
+<button type="button" data-t="b-heran">禾聯</button>
+<button type="button" data-t="b-chimei">奇美</button>
+<button type="button" data-t="b-sampo">聲寶</button>
+</div>
+
+<div class="nomatch" id="nomatch">查無符合項目，換個關鍵字試試</div>
+
+<section class="brand" id="b-pana">
+<div class="sec-head pana">Panasonic 國際 <span><span style="font-size:12px;font-weight:400">10/01–01/31</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>方式：</b>原廠官網線上登錄（申請至2027/02/26）<br><b>最高省12,000</b>＝現金回饋最高8,000＋貨物稅退稅最高2,000＋汰舊換新3,000</div>
+<table>
+<tr><th>回饋</th><th>適用機種</th></tr>
+<tr><td><b>8,000元</b></td><td>UX超高效系列 室外機種（冷暖）</td></tr>
+<tr><td><b>2,000元</b></td><td>VX極致旗艦室外機／UX旗艦室內機／UJ系列室內機／UX頂級旗艦室外機／一對多室外機（冷暖）</td></tr>
+<tr><td><b>1,000元</b></td><td>UK・U標準室外機／U冷暖室內機／K標準室外機（冷暖）</td></tr>
+</table>
+<div class="op">📝 結帳提醒：請客人上官網登錄，需購買發票＋保證書＋存摺封面，掃海報QR Code申請。</div>
+</div>
+</section>
+
+<section class="brand" id="b-mhi">
+<div class="sec-head mhi">三菱重工 <span><span style="font-size:12px;font-weight:400">10/01–12/31・量販限定</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>操作：</b>好禮－會員碰Code</div>
+<div class="gift" data-k="三菱重工 1對1 變頻冷暖 VESTA 16吋 遙控 DC風扇 VF-DC1601 40-630071-001 630071">
+<div class="gname">A. 1對1全系列→ VESTA 16吋遙控DC風扇 <span class="tag">2.0kW以上1級變頻</span></div>
+<div class="coderow"><span class="gcode">40-630071-001</span><button type="button" class="copybtn" data-c="40-630071-001">複製</button></div>
+<div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="三菱重工 多聯 變頻冷暖 OSIM 護眼樂 Air2 OS-1251 40-630032-001 630032">
+<div class="gname">B. 多聯系列→ OSIM 護眼樂Air2 <span class="tag">以室外機計算</span></div>
+<div class="coderow"><span class="gcode">40-630032-001</span><button type="button" class="copybtn" data-c="40-630032-001">複製</button></div>
+<div class="nsp">NSP 3000</div></div>
+</div>
+</section>
+
+<section class="brand" id="b-lg">
+<div class="sec-head lgc">LG <span><span style="font-size:12px;font-weight:400">10/01–01/31</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>方式：</b>LG官網登錄（登錄至2027/02/28）<br><b>滿額禮：</b>買空調滿 <b>6萬</b> 送 LG空氣清淨機 AS351GW10（$10,900）</div>
+<div class="meta">適用：一對一・一對多指定型號（極適／極淨／極智／極效／旗艦／經典／潮酷／清淨系列）</div>
+<div class="op">📝 結帳提醒：會員買全系列冷氣（含室內機）另贈 op點數1000點。</div>
+</div>
+</section>
+
+<section class="brand" id="b-sharp">
+<div class="sec-head shp">SHARP 夏普 <span><span style="font-size:12px;font-weight:400">10/01–01/31</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>適用：</b>全系列1級變頻 <b>2.2kW以上</b>（一對全機種，以室外機計算）<br><b>操作：</b>會員碰Code <b>4選1</b>｜最高省5,000（汰舊3,000＋貨物稅2,000）</div>
+<div class="gift" data-k="夏普 陶瓷 電暖器 YPH-10LH010 YAMADA 40-630018-001 630018"><div class="gname">陶瓷式電暖器 YPH-10LH010（YAMADA）</div><div class="coderow"><span class="gcode">40-630018-001</span><button type="button" class="copybtn" data-c="40-630018-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="夏普 日式 電烤盤 YHP-130B010 YAMADA 40-630020-001 630020"><div class="gname">日式電烤盤 YHP-130B010（YAMADA）</div><div class="coderow"><span class="gcode">40-630020-001</span><button type="button" class="copybtn" data-c="40-630020-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="夏普 摺疊 高速 吹風機 YBH-12QN060 山由 40-630987-001 630987"><div class="gname">摺疊高速吹風機 YBH-12QN060（山由）</div><div class="coderow"><span class="gcode">40-630987-001</span><button type="button" class="copybtn" data-c="40-630987-001">複製</button></div><div class="nsp">NSP 2990</div></div>
+<div class="gift" data-k="夏普 14吋 DC 直流 電扇 YDF-14AH5712 YAMADA 40-630989-001 630989"><div class="gname">14吋DC直流電扇 YDF-14AH5712（YAMADA）</div><div class="coderow"><span class="gcode">40-630989-001</span><button type="button" class="copybtn" data-c="40-630989-001">複製</button></div><div class="nsp">NSP 2690</div></div>
+</div>
+</section>
+
+<section class="brand" id="b-heran">
+<div class="sec-head hrn">HERAN 禾聯 <span><span style="font-size:12px;font-weight:400">10/01–01/31</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>適用：</b>全系列1級變頻 <b>2.2kW以上</b>（一對全機種，以室外機計算）<br><b>操作：</b>會員碰Code <b>5選1</b>｜最高省5,000（汰舊3,000＋貨物稅2,000）</div>
+<div class="gift" data-k="禾聯 微波爐 HMO-20MD16T 轉盤式 40-630001-001 630001"><div class="gname">轉盤式微波爐 HMO-20MD16T</div><div class="coderow"><span class="gcode">40-630001-001</span><button type="button" class="copybtn" data-c="40-630001-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="禾聯 16吋 DC 風扇 HDF-16CH510 40-630012-001 630012"><div class="gname">16吋DC風扇 HDF-16CH510</div><div class="coderow"><span class="gcode">40-630012-001</span><button type="button" class="copybtn" data-c="40-630012-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="禾聯 無線 手持 吸塵器 HVC-14PV010 40-630013-001 630013"><div class="gname">無線手持吸塵器 HVC-14PV010</div><div class="coderow"><span class="gcode">40-630013-001</span><button type="button" class="copybtn" data-c="40-630013-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="禾聯 MINAE 數位 機上盒 MAB-A01T1 40-630023-001 630023"><div class="gname">MINAE數位機上盒 MAB-A01T1</div><div class="coderow"><span class="gcode">40-630023-001</span><button type="button" class="copybtn" data-c="40-630023-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="禾聯 不鏽鋼 電鍋 SCZS-115 40-630992-001 630992"><div class="gname">全不鏽鋼電鍋 SCZS-115</div><div class="coderow"><span class="gcode">40-630992-001</span><button type="button" class="copybtn" data-c="40-630992-001">複製</button></div><div class="nsp">NSP 2990</div></div>
+</div>
+</section>
+
+<section class="brand" id="b-chimei">
+<div class="sec-head chm">CHIMEI 奇美 <span><span style="font-size:12px;font-weight:400">10/01–11/30 ⚠️</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>適用：</b>變頻冷暖1級 <b>2.8kW(含)以上</b>｜<b>操作：</b>會員碰Code｜貨物稅退稅最高再省2,000</div>
+<div class="gift" data-k="奇美 循環扇 DF-08X1UM 360度 廣角 4D 遙控 40-630022-001 630022"><div class="gname">360度廣角4D遙控循環扇 DF-08X1UM（建議售價$2,488）</div><div class="coderow"><span class="gcode">40-630022-001</span><button type="button" class="copybtn" data-c="40-630022-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+</div>
+</section>
+
+<section class="brand" id="b-sampo">
+<div class="sec-head smp">SAMPO 聲寶 <span><span style="font-size:12px;font-weight:400">10/01–01/31</span> <span class="arrow">▼</span></span></div>
+<div class="sec-body">
+<div class="meta"><b>適用：</b>全系列1級變頻 <b>2.2kW(含)以上</b>｜<b>操作：</b>會員碰Code <b>4選1</b>｜政府退貨物稅＋汰舊換新補助（2026年底前）</div>
+<div class="gift" data-k="聲寶 IH 變頻 電磁爐 KM-AC2026 40-630011-001 630011"><div class="gname">IH變頻電磁爐 KM-AC2026</div><div class="coderow"><span class="gcode">40-630011-001</span><button type="button" class="copybtn" data-c="40-630011-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="聲寶 新格 微波爐 SRE-AC2026 20L 40-630080-001 630080"><div class="gname">新格20L微波爐 SRE-AC2026</div><div class="coderow"><span class="gcode">40-630080-001</span><button type="button" class="copybtn" data-c="40-630080-001">複製</button></div><div class="nsp">NSP 2000</div></div>
+<div class="gift" data-k="聲寶 CLAIRE AI 溫控 吹風機 CED-AC2026 40-630010-001 630010"><div class="gname">CLAIRE AI溫控吹風機 CED-AC2026</div><div class="coderow"><span class="gcode">40-630010-001</span><button type="button" class="copybtn" data-c="40-630010-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+<div class="gift" data-k="聲寶 Balzano 破壁 調理機 BZ-WBD1066 白 粉 40-630024-001 630024 40-630025-001 630025"><div class="gname">Balzano破壁調理機 BZ-WBD1066（白／粉）</div><div class="coderow"><span class="gcode">40-630024-001（白）</span><button type="button" class="copybtn" data-c="40-630024-001">複製</button></div><div class="coderow"><span class="gcode">40-630025-001（粉）</span><button type="button" class="copybtn" data-c="40-630025-001">複製</button></div><div class="nsp">NSP 3000</div></div>
+</div>
+</section>
+
+<footer>整理：2026/10/01。實際以原廠官方公告為準；數量有限送完為止。政府補助以政府公告為準。</footer>
+
+<script>
+(function(){
+var nav=document.getElementById('brandnav');
+nav.addEventListener('click',function(e){
+var b=e.target.closest('button');if(!b)return;
+var t=document.getElementById(b.getAttribute('data-t'));if(!t)return;
+t.classList.remove('closed');
+t.scrollIntoView({behavior:'smooth',block:'start'});
+nav.querySelectorAll('button').forEach(function(x){x.classList.remove('active')});
+b.classList.add('active');
+});
+document.querySelectorAll('.sec-head').forEach(function(h){
+h.addEventListener('click',function(){h.parentElement.classList.toggle('closed')});
+});
+document.querySelectorAll('.copybtn').forEach(function(btn){
+btn.addEventListener('click',function(ev){
+ev.stopPropagation();
+var txt=btn.getAttribute('data-c');
+function done(){btn.textContent='已複製';btn.classList.add('ok');setTimeout(function(){btn.textContent='複製';btn.classList.remove('ok')},1500)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback()})}else{fallback()}
+function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(ta)}
+});
+});
+var q=document.getElementById('q'),nm=document.getElementById('nomatch');
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function clearMarks(root){root.querySelectorAll('mark').forEach(function(m){var p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize()})}
+function doSearch(){
+var kw=q.value.trim().toLowerCase();
+var anySec=false;
+document.querySelectorAll('section.brand').forEach(function(sec){
+clearMarks(sec);
+if(!kw){sec.style.display='';sec.querySelectorAll('.gift').forEach(function(g){g.style.display=''});anySec=true;return}
+var secHit=(sec.textContent.toLowerCase().indexOf(kw)>-1);
+var giftHit=false;
+sec.querySelectorAll('.gift').forEach(function(g){
+var hit=(g.getAttribute('data-k')||'').toLowerCase().indexOf(kw)>-1||g.textContent.toLowerCase().indexOf(kw)>-1;
+g.style.display=hit?'':'none';
+if(hit){giftHit=true;
+g.querySelectorAll('.gname,.gcode').forEach(function(el){
+var html=esc(el.textContent),i=html.toLowerCase().indexOf(esc(kw).toLowerCase());
+if(i>-1){el.innerHTML=html.slice(0,i)+'<mark>'+html.slice(i,i+kw.length)+'</mark>'+html.slice(i+kw.length)}
+})}
+});
+var show=secHit||giftHit;
+sec.style.display=show?'':'none';
+if(show){sec.classList.remove('closed');anySec=true}
+});
+nm.style.display=anySec?'none':'block';
+}
+q.addEventListener('input',doSearch);
+document.getElementById('clearBtn').addEventListener('click',function(){q.value='';doSearch();q.focus()});
+})();
+</script>
+</body>
+</html>
