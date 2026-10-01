@@ -47,6 +47,13 @@ header h1,.searchbar{max-width:740px;margin-left:auto;margin-right:auto}
 section.brand{max-width:760px;margin:12px auto}
 footer{max-width:760px;margin:0 auto}
 }
+
+.bcodebtn{font-size:16px;font-weight:700;padding:11px 18px;border:1.5px solid #0f172a;border-radius:8px;background:#fff;color:#0f172a;cursor:pointer;white-space:nowrap}
+.bmodal{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center;padding:24px}
+.bcard{background:#fff;border-radius:18px;padding:24px 20px;max-width:420px;width:100%;text-align:center}
+.bcard .bname{font-size:19px;font-weight:800;margin-bottom:14px;color:#0f172a}
+.bcard svg{width:100%;height:auto}
+.bclose{margin-top:16px;width:100%;font-size:18px;font-weight:700;background:#0f172a;color:#fff;border:none;border-radius:10px;padding:14px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -206,6 +213,40 @@ nm.style.display=anySec?'none':'block';
 q.addEventListener('input',doSearch);
 document.getElementById('clearBtn').addEventListener('click',function(){q.value='';doSearch();q.focus()});
 })();
+const BARCODES={"40-630071-001":"4711216460538","40-630032-001":"8888657167480"};
+const EAN_L=["0001101","0011001","0010011","0111101","0100011","0110001","0101111","0111011","0110111","0001011"];
+const EAN_G=["0100111","0110011","0011011","0100001","0011101","0111001","0000101","0010001","0001001","0010111"];
+const EAN_R=["1110010","1100110","1101100","1000010","1011100","1001110","1010000","1000100","1001000","1110100"];
+const EAN_P=["LLLLLL","LLGLGG","LLGGLG","LLGGGL","LGLLGG","LGGLLG","LGGGLL","LGLGLG","LGLGGL","LGGLGL"];
+function ean13svg(code){
+var d=code.split("").map(Number),pat=EAN_P[d[0]],bits="101",i;
+for(i=1;i<=6;i++)bits+=(pat[i-1]==="L"?EAN_L:EAN_G)[d[i]];
+bits+="01010";
+for(i=7;i<=12;i++)bits+=EAN_R[d[i]];
+bits+="101";
+var mod=3,H=120,pad=14,W=bits.length*mod+pad*2,r="";
+for(i=0;i<bits.length;i++)if(bits[i]==="1")r+='<rect x="'+(pad+i*mod)+'" y="0" width="'+mod+'" height="'+H+'" fill="#111"/>';
+return '<svg viewBox="0 0 '+W+" "+(H+36)+'" role="img" aria-label="條碼 '+code+'">'+r+'<text x="'+(W/2)+'" y="'+(H+28)+'" text-anchor="middle" font-family="ui-monospace,monospace" font-size="24" fill="#111" letter-spacing="3">'+code+"</text></svg>";
+}
+function openBarcode(name,code){
+var bc=BARCODES[code];if(!bc)return;
+var m=document.createElement("div");m.className="bmodal";
+m.innerHTML='<div class="bcard"><div class="bname">'+name+'</div>'+ean13svg(bc)+'<button type="button" class="bclose">關閉</button></div>';
+m.querySelector(".bclose").addEventListener("click",function(){m.remove()});
+m.addEventListener("click",function(e){if(e.target===m)m.remove()});
+document.body.appendChild(m);
+}
+document.querySelectorAll(".gift").forEach(function(g){
+var codeEl=g.querySelector(".gcode");if(!codeEl)return;
+var num=codeEl.textContent.trim();
+if(!BARCODES[num])return;
+var row=g.querySelector(".coderow");
+var name=g.querySelector(".gname").textContent.trim();
+var b=document.createElement("button");b.type="button";b.className="bcodebtn";b.textContent="條碼";
+b.addEventListener("click",function(ev){ev.stopPropagation();openBarcode(name,num)});
+row.appendChild(b);
+var k=g.getAttribute("data-k")||"";g.setAttribute("data-k",k+" "+BARCODES[num]);
+});
 </script>
 </body>
 </html>
