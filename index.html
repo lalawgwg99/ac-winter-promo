@@ -54,6 +54,10 @@ footer{max-width:760px;margin:0 auto}
 .bcard .bname{font-size:19px;font-weight:800;margin-bottom:14px;color:#0f172a}
 .bcard svg{width:100%;height:auto}
 .bclose{margin-top:16px;width:100%;font-size:18px;font-weight:700;background:#0f172a;color:#fff;border:none;border-radius:10px;padding:14px;cursor:pointer}
+
+.codebtns{display:flex;flex-direction:column;gap:8px}
+.codebtns .copybtn,.codebtns .bcodebtn{width:100%;white-space:nowrap}
+.gcode{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -244,7 +248,8 @@ var row=g.querySelector(".coderow");
 var name=g.querySelector(".gname").textContent.trim();
 var b=document.createElement("button");b.type="button";b.className="bcodebtn";b.textContent="條碼";
 b.addEventListener("click",function(ev){ev.stopPropagation();openBarcode(name,num)});
-row.appendChild(b);
+var wrap=document.createElement("div");wrap.className="codebtns";
+wrap.appendChild(row.querySelector(".copybtn"));wrap.appendChild(b);row.appendChild(wrap);
 var k=g.getAttribute("data-k")||"";g.setAttribute("data-k",k+" "+BARCODES[num]);
 });
 </script>
